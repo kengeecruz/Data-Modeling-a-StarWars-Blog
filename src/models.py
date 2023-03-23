@@ -19,18 +19,22 @@ class User(Base):
     email= Column(String(80), nullable=False)
     password = Column(String(80), nullable=False)
 
-class Favorito(Base):
-    __tablename__ = 'favorito'
+class Favorito_Character(Base):
+    __tablename__ = 'favorito_character'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    id_usuario = Column(Integer,ForeignKey('user.id'))
+    id_characters=Column(Integer,ForeignKey('characters.id'))
+    
+class Favorito_Planets(Base):
+    __tablename__ = 'favorito_Planets'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     id_usuario = Column(Integer,ForeignKey('user.id'))
     id_planets= Column(Integer,ForeignKey('planets.id'))
-    id_characters=Column(Integer,ForeignKey('characters.id'))
     
-   # person_id = Column(Integer, ForeignKey('person.id'))
-    #person = relationship(Person)
-
 class Planets(Base):
     __tablename__ = 'planets'
     id = Column(Integer, primary_key=True)
